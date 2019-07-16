@@ -34,16 +34,16 @@ import com.efluid.tcbc.utils.MethodLookup;
  *
  * @author Vincent BOUTHINON
  */
-public class TestControleByteCode extends ScanneClasspath {
+public class ControleByteCodeTest extends ScanneClasspathTest {
 
-  private static final Logger LOG = LoggerFactory.getLogger(TestControleByteCode.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ControleByteCodeTest.class);
   private static final String FICHIER_CONFIGURATION = "controleByteCode.yaml";
   private static final String ENV_NOMBRE_JAR_MINIMUM = "nbJarMinimum";
   private static int nbJarMinimum = System.getProperty(ENV_NOMBRE_JAR_MINIMUM) != null ? Integer.parseInt(System.getProperty(ENV_NOMBRE_JAR_MINIMUM)) : 0;
   /* Utilisés pour effectuer le bilan global du contrôle du byteCode */
   private Map<String, String> classesReferenceesNonTrouveesOuChargees = new HashMap<>();
 
-  public TestControleByteCode() {
+  public ControleByteCodeTest() {
     super();
   }
 
@@ -157,7 +157,7 @@ public class TestControleByteCode extends ScanneClasspath {
     try {
       Method method = MethodLookup.findMethodInHierarchy(aClass, methodName, parameterTypes);
       if (method == null) {
-        method = TestControleByteCode.getMethod(aClass, methodName, parameterTypes);
+        method = ControleByteCodeTest.getMethod(aClass, methodName, parameterTypes);
       }
       if (null == method && isPolymorphicSignature(aClass, methodName)) {
         return;

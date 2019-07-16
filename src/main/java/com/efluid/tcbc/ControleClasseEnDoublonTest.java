@@ -7,9 +7,9 @@ import org.slf4j.*;
 /**
  * Contrôle qu'il n'y ait pas de classe en doublon dans le classpath
  */
-public class TestControleClasseEnDoublon extends ScanneClasspath {
+public class ControleClasseEnDoublonTest extends ScanneClasspathTest {
 
-  private static final Logger LOG = LoggerFactory.getLogger(TestControleClasseEnDoublon.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ControleClasseEnDoublonTest.class);
 
   private static final String FICHIER_CONFIGURATION = "controleClasseEnDoublon.yaml";
   private Map<String, Classe> classesParcourues = new HashMap<>();

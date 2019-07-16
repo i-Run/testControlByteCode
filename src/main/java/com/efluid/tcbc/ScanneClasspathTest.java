@@ -1,17 +1,34 @@
 package com.efluid.tcbc;
 
-import static com.efluid.tcbc.ScanneClasspath.Exclusion.*;
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.*;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.*;
-import java.util.jar.*;
-
-import org.junit.*;
-import org.slf4j.*;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+
+import static com.efluid.tcbc.ScanneClasspathTest.Exclusion.CLASSE;
+import static com.efluid.tcbc.ScanneClasspathTest.Exclusion.ERREUR;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Canevas permettant de parcourir le classpath classe par classe <br>
@@ -20,9 +37,9 @@ import org.yaml.snakeyaml.Yaml;
  * <br>
  * Pour définir un autre classpath que celui par défaut, utiliser la variable d'environnement -Dclasspath=XXX<br>
  */
-public abstract class ScanneClasspath {
+public abstract class ScanneClasspathTest {
 
-  private static final Logger LOG = LoggerFactory.getLogger(ScanneClasspath.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ScanneClasspathTest.class);
 
   private static final String ENV_CLASSEPATH = "classpath";
   private String classpath = System.getProperty(ENV_CLASSEPATH);
@@ -42,20 +59,20 @@ public abstract class ScanneClasspath {
   /**
    * Filtre indiquant les jars contrôlés
    */
-  protected List<String> jarsInclus = new ArrayList<String>();
-  private List<String> filtreClassesExclues = new ArrayList<String>();
-  private List<String> filtreErreursExclues = new ArrayList<String>();
+  protected List<String> jarsInclus = new ArrayList<>();
+  private List<String> filtreClassesExclues = new ArrayList<>();
+  private List<String> filtreErreursExclues = new ArrayList<>();
 
   /**
    * Utilisés pour effectuer le bilan global
    */
-  protected Set<Jar> jarsTraites = new HashSet<Jar>();
+  protected Set<Jar> jarsTraites = new HashSet<>();
 
-  protected Map<Exclusion, Set<String>> exclusions = new HashMap<Exclusion, Set<String>>();
+  protected Map<Exclusion, Set<String>> exclusions = new HashMap<>();
 
-  public ScanneClasspath() {
-    exclusions.put(ERREUR, new HashSet<String>());
-    exclusions.put(CLASSE, new HashSet<String>());
+  public ScanneClasspathTest() {
+    exclusions.put(ERREUR, new HashSet<>());
+    exclusions.put(CLASSE, new HashSet<>());
   }
 
   protected void addToExclusions(Exclusion typeExclusion, String exclusion) {
@@ -87,14 +104,14 @@ public abstract class ScanneClasspath {
     doLogList(exclusions.get(ERREUR), "Exclusions des erreurs");
   }
 
-  @Before
   public void init() {
     chargerConfiguration();
   }
 
   @Test
   public void execute() {
-    execute(classpath != null ? new String[] { classpath } : ((String[]) null));
+    init();
+    execute(classpath != null ? new String[]{classpath} : ((String[]) null));
   }
 
   /**
@@ -123,7 +140,7 @@ public abstract class ScanneClasspath {
    */
   protected void chargerConfiguration() {
     try {
-      InputStream is = TestControleByteCode.class.getClassLoader().getResourceAsStream(getFichierConfiguration());
+      InputStream is = ControleByteCodeTest.class.getClassLoader().getResourceAsStream(getFichierConfiguration());
       if (is == null) {
         LOG.error("Fichier de configuration inexistant : " + getFichierConfiguration());
         return;
@@ -278,8 +295,8 @@ public abstract class ScanneClasspath {
 
   protected static void doLogList(Collection<String> col, String msgEntete) {
     if (col != null && !col.isEmpty()) {
-      List<String> liste = (List<String>) ((col instanceof List) ? col : new ArrayList<String>(col));
-      LOG.info("|==== "+ msgEntete + " ====|");
+      List<String> liste = (List<String>) ((col instanceof List) ? col : new ArrayList<>(col));
+      LOG.info("|==== " + msgEntete + " ====|");
       liste.stream().sorted().forEach(s -> LOG.info("\t" + s));
     }
   }
