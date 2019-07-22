@@ -111,7 +111,7 @@ public abstract class ScanneClasspathTest {
   @Test
   public void execute() {
     init();
-    execute(classpath != null ? new String[]{classpath} : ((String[]) null));
+    execute(classpath != null ? new String[]{classpath} : null);
   }
 
   /**
@@ -145,7 +145,7 @@ public abstract class ScanneClasspathTest {
         LOG.error("Fichier de configuration inexistant : " + getFichierConfiguration());
         return;
       }
-      Map<String, ArrayList<String>> configuration = (Map<String, ArrayList<String>>) new Yaml().load(is);
+      Map<String, ArrayList<String>> configuration = new Yaml().load(is);
       if (configuration != null) {
         chargerListeConfiguration(configuration, jarsInclus, "jarsInclus");
         chargerListeConfiguration(configuration, filtreClassesExclues, "filtreClassesExclues");
@@ -285,7 +285,7 @@ public abstract class ScanneClasspathTest {
    */
   protected boolean isExclu(Exclusion typeExclusion, final String str) {
     for (String exclusion : (CLASSE.equals(typeExclusion) ? filtreClassesExclues : filtreErreursExclues)) {
-      if (str.toLowerCase().indexOf(exclusion.toLowerCase()) != -1) {
+      if (str.toLowerCase().contains(exclusion.toLowerCase())) {
         addToExclusions(typeExclusion, str);
         return true;
       }
