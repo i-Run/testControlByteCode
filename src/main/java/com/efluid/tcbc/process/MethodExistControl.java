@@ -3,16 +3,16 @@ package com.efluid.tcbc.process;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-import com.efluid.tcbc.TestControleByteCode;
+import com.efluid.tcbc.ControleByteCodeTest;
 import com.efluid.tcbc.object.MethodeCall;
 import com.efluid.tcbc.utils.MethodLookup;
 
 public class MethodExistControl {
 
-  private TestControleByteCode controle;
+  private ControleByteCodeTest controle;
   private MethodeCall methodeCall;
 
-  MethodExistControl(TestControleByteCode controle, MethodeCall methodeCall) {
+  MethodExistControl(ControleByteCodeTest controle, MethodeCall methodeCall) {
     this.controle = controle;
     this.methodeCall = methodeCall;
   }

@@ -2,14 +2,14 @@ package com.efluid.tcbc.process;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.efluid.tcbc.TestDependenceJar;
+import com.efluid.tcbc.DependenceJarTest;
 import com.efluid.tcbc.object.Classe;
 import com.efluid.tcbc.utils.ScanneClasspathUtils;
 import javassist.NotFoundException;
 
-public class DependencyAnalysisBetweenLibraries extends ReadByteCodeClass<TestDependenceJar> {
+public class DependencyAnalysisBetweenLibraries extends ReadByteCodeClass<DependenceJarTest> {
 
-  public DependencyAnalysisBetweenLibraries(TestDependenceJar control, Classe currentReadingClass) {
+  public DependencyAnalysisBetweenLibraries(DependenceJarTest control, Classe currentReadingClass) {
     super(control, currentReadingClass);
   }
 

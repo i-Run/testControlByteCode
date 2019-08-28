@@ -1,20 +1,20 @@
 package com.efluid.tcbc;
 
-import static com.efluid.tcbc.process.ScanneClasspath.Exclusion.ERREUR;
+import static com.efluid.tcbc.process.ScanneClasspathTest.Exclusion.ERREUR;
 
 import java.util.*;
 
 import org.slf4j.*;
 
 import com.efluid.tcbc.object.Classe;
-import com.efluid.tcbc.process.ScanneClasspath;
+import com.efluid.tcbc.process.ScanneClasspathTest;
 
 /**
  * Contrôle qu'il n'y ait pas de classe en doublon dans le classpath
  */
-public class TestControleClasseEnDoublon extends ScanneClasspath {
+public class ControleClasseEnDoublonTest extends ScanneClasspathTest {
 
-  private static final Logger LOG = LoggerFactory.getLogger(TestControleClasseEnDoublon.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ControleClasseEnDoublonTest.class);
 
   private static final String FICHIER_CONFIGURATION = "controleClasseEnDoublon.yaml";
   private Map<String, Classe> classesParcourues = new HashMap<>();

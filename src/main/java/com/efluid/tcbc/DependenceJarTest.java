@@ -24,15 +24,15 @@ import com.efluid.tcbc.process.DependencyAnalysisBetweenLibraries;
  * - Le répertoire « classes » est considéré comme un jar
  * </pre>
  */
-public class TestDependenceJar extends TestControleByteCode {
+public class DependenceJarTest extends ControleByteCodeTest {
 
-  private static final Logger LOG = LoggerFactory.getLogger(TestDependenceJar.class);
+  private static final Logger LOG = LoggerFactory.getLogger(DependenceJarTest.class);
 
   private static final String FICHIER_CONFIGURATION = "dependenceJar.yaml";
   public static String NOM_FICHIER_GRAPHVIZ = "dependenceJar.dot";
 
   /** Nombre de dépendance total */
-  private Map<String, AtomicLong> dependances = new HashMap<String, AtomicLong>();
+  private Map<String, AtomicLong> dependances = new HashMap<>();
   private StringBuffer fichierGraphViz = new StringBuffer("digraph dependence {" + lineSeparator() + "\tlayout=dot;concentrate=true;node [shape=box];edge [color=blue];classes [color=red];" + lineSeparator());
 
   @Override
@@ -123,6 +123,7 @@ public class TestDependenceJar extends TestControleByteCode {
       this.map = base;
     }
 
+    @Override
     public int compare(Object a, Object b) {
       String valA = "" + map.get(a) + a;
       String valB = "" + map.get(b) + b;

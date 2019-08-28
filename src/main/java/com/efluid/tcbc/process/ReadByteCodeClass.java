@@ -6,12 +6,12 @@ import static javassist.bytecode.Descriptor.getReturnType;
 import java.lang.reflect.Array;
 import java.util.*;
 
-import com.efluid.tcbc.TestControleByteCode;
+import com.efluid.tcbc.ControleByteCodeTest;
 import com.efluid.tcbc.object.*;
 import javassist.*;
 import javassist.bytecode.*;
 
-public class ReadByteCodeClass<T extends TestControleByteCode> {
+public class ReadByteCodeClass<T extends ControleByteCodeTest> {
 
   private static final Map<Class<?>, Class<?>> WRAPPER_TO_PRIMITIVE;
 
@@ -131,7 +131,7 @@ public class ReadByteCodeClass<T extends TestControleByteCode> {
     }
 
     boolean erreurAjoutee = control.addErreur(libelle);
-    if (erreurAjoutee && !ScanneClasspath.isNullOrEmpty(nomMethode)) {
+    if (erreurAjoutee && !ScanneClasspathTest.isNullOrEmpty(nomMethode)) {
       control.getClassesReferenceesNonTrouveesOuChargees().putIfAbsent(nomClasse, libelle + (" - Classe appelante : " + currentReadingClass));
     }
     return null;

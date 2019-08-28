@@ -22,9 +22,9 @@ import com.efluid.tcbc.process.AnalysisUseDependency;
  * - Les appels peuvent être fait par des dépendances
  * </pre>
  */
-public class TestAPIsDependenceJar extends TestControleByteCode {
+public class APIsDependenceJarTest extends ControleByteCodeTest {
 
-  private static final Logger LOG = LoggerFactory.getLogger(TestAPIsDependenceJar.class);
+  private static final Logger LOG = LoggerFactory.getLogger(APIsDependenceJarTest.class);
 
   private static final String FICHIER_CONFIGURATION = "apisDependence.yaml";
 
@@ -37,7 +37,7 @@ public class TestAPIsDependenceJar extends TestControleByteCode {
   private boolean erreur = Boolean.parseBoolean(System.getProperty(ENV_ERREUR));
   private Set<String> apis = new HashSet<>();
 
-  public TestAPIsDependenceJar(String jar) {
+  public APIsDependenceJarTest(String jar) {
     libraryControl = isNullOrEmpty(jar) ? System.getProperty(ENV_JAR) : jar;
   }
 
@@ -90,7 +90,7 @@ public class TestAPIsDependenceJar extends TestControleByteCode {
   }
 
   public static void main(String args[]) {
-    TestAPIsDependenceJar test = new TestAPIsDependenceJar(parserArgument(args));
+    APIsDependenceJarTest test = new APIsDependenceJarTest(parserArgument(args));
     test.init();
     test.execute();
   }

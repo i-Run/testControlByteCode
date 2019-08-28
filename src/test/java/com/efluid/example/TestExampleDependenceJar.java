@@ -1,22 +1,21 @@
 package com.efluid.example;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.efluid.tcbc.DependenceJarTest;
+import com.efluid.tcbc.object.Jar;
+import org.assertj.core.api.Condition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
-import org.assertj.core.api.Condition;
-import org.slf4j.*;
-
-import com.efluid.tcbc.TestDependenceJar;
-import com.efluid.tcbc.object.Jar;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Test the detection of a dependence, in this case sfl4j.<br>
  * Generate a file <br>
  * Example of file generated "dependenceJar.dot" :
  *
- * @startuml
- * digraph dependence {
+ * @startuml digraph dependence {
  * layout=dot;concentrate=true;node [shape=box];edge [color=blue];classes [color=red];
  * "slf4j-api-1.7.25.jar" -> "slf4j-simple-1.7.25.jar" [label="7"];
  * "test-classes" -> "byte-buddy-1.9.13.jar" [label="8"];
@@ -40,7 +39,7 @@ import com.efluid.tcbc.object.Jar;
  * }
  * @enduml
  */
-public class TestExampleDependenceJar extends TestDependenceJar {
+public class TestExampleDependenceJar extends DependenceJarTest {
 
   private static final Logger LOG = LoggerFactory.getLogger(TestExampleDependenceJar.class);
 

@@ -2,9 +2,9 @@ package com.efluid.example;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.efluid.tcbc.TestAPIsDependenceJar;
+import com.efluid.tcbc.APIsDependenceJarTest;
 
-public class TestExampleAPIsDependenceJar extends TestAPIsDependenceJar {
+public class TestExampleAPIsDependenceJar extends APIsDependenceJarTest {
 
   public TestExampleAPIsDependenceJar() {
     super("bytebuddy");

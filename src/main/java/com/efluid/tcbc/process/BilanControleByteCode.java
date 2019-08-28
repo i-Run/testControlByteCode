@@ -4,16 +4,16 @@ import static java.lang.System.lineSeparator;
 
 import org.slf4j.*;
 
-import com.efluid.tcbc.TestControleByteCode;
+import com.efluid.tcbc.ControleByteCodeTest;
 import com.efluid.tcbc.object.*;
 
 public class BilanControleByteCode {
 
   private static final Logger LOG = LoggerFactory.getLogger(BilanControleByteCode.class);
 
-  private final TestControleByteCode controle;
+  private final ControleByteCodeTest controle;
 
-  public BilanControleByteCode(TestControleByteCode controle) {
+  public BilanControleByteCode(ControleByteCodeTest controle) {
     this.controle = controle;
   }
 
@@ -27,7 +27,7 @@ public class BilanControleByteCode {
   }
 
   private void loggerSynthese() {
-    TestControleByteCode.doLogList(controle.getClassesReferenceesNonTrouveesOuChargees().values(), "Classes référencées non trouvées :");
+    ControleByteCodeTest.doLogList(controle.getClassesReferenceesNonTrouveesOuChargees().values(), "Classes référencées non trouvées :");
     LOG.info("Classes en erreur lors du chargement : {}", controle.getClassesReferenceesNonTrouveesOuChargees().size());
     controle.getClassesReferenceesNonTrouveesOuChargees().values().forEach(classe ->
       LOG.info("\t{}", classe));

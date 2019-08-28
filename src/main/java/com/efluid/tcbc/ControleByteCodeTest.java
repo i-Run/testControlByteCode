@@ -18,9 +18,9 @@ import com.efluid.tcbc.process.*;
  *
  * @author Vincent BOUTHINON
  */
-public class TestControleByteCode extends ScanneClasspath {
+public class ControleByteCodeTest extends ScanneClasspathTest {
 
-  private static final Logger LOG = LoggerFactory.getLogger(TestControleByteCode.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ControleByteCodeTest.class);
   private static final String FICHIER_CONFIGURATION = "controleByteCode.yaml";
   private static final String ENV_NOMBRE_JAR_MINIMUM = "nbJarMinimum";
   private static int nbJarMinimum = System.getProperty(ENV_NOMBRE_JAR_MINIMUM) != null ? Integer.parseInt(System.getProperty(ENV_NOMBRE_JAR_MINIMUM)) : 0;

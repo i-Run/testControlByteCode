@@ -1,6 +1,6 @@
 package com.efluid.tcbc.process;
 
-import static com.efluid.tcbc.process.ScanneClasspath.Exclusion.*;
+import static com.efluid.tcbc.process.ScanneClasspathTest.Exclusion.*;
 import static java.io.File.separatorChar;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,7 +14,7 @@ import org.junit.*;
 import org.slf4j.*;
 import org.yaml.snakeyaml.Yaml;
 
-import com.efluid.tcbc.TestControleByteCode;
+import com.efluid.tcbc.ControleByteCodeTest;
 import com.efluid.tcbc.object.*;
 
 /**
@@ -24,9 +24,9 @@ import com.efluid.tcbc.object.*;
  * <br>
  * Pour définir un autre classpath que celui par défaut, utiliser la variable d'environnement -Dclasspath=XXX<br>
  */
-public abstract class ScanneClasspath {
+public abstract class ScanneClasspathTest {
 
-  private static final Logger LOG = LoggerFactory.getLogger(ScanneClasspath.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ScanneClasspathTest.class);
 
   private static final String ENV_CLASSEPATH = "classpath";
   private static final String CLASSES_EXTENSION = ".class";
@@ -66,7 +66,7 @@ public abstract class ScanneClasspath {
 
   Map<Exclusion, Set<String>> exclusions = new HashMap<>();
 
-  protected ScanneClasspath() {
+  protected ScanneClasspathTest() {
     exclusions.put(ERREUR, new HashSet<>());
     exclusions.put(CLASSE, new HashSet<>());
   }
@@ -146,7 +146,7 @@ public abstract class ScanneClasspath {
    */
   private void chargerConfiguration() {
     try {
-      InputStream is = TestControleByteCode.class.getClassLoader().getResourceAsStream(getFichierConfiguration());
+      InputStream is = ControleByteCodeTest.class.getClassLoader().getResourceAsStream(getFichierConfiguration());
       if (is == null) {
         LOG.error("Configuration file not found : {}", getFichierConfiguration());
         return;

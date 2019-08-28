@@ -1,6 +1,6 @@
 package com.efluid.example;
 
-import com.efluid.tcbc.TestControleByteCode;
+import com.efluid.tcbc.ControleByteCodeTest;
 import com.efluid.tcbc.object.Classe;
 import com.efluid.tcbc.object.Jar;
 import net.bytebuddy.ByteBuddy;
@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Test an error usage case when a signature is modified by changing the return type from String to void.
  */
-public class TestExampleControlByteCode extends TestControleByteCode {
+public class TestExampleControlByteCode extends ControleByteCodeTest {
 
   private static final String NAME_CLASS_CREATED_BY_BYTE_BUDDY = "ClassCreatedByByteBuddy";
   private static final String TARGET_TEST_CLASSES = "target/test-classes";

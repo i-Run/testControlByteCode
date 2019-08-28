@@ -1,13 +1,13 @@
 package com.efluid.tcbc.process;
 
-import com.efluid.tcbc.TestAPIsDependenceJar;
+import com.efluid.tcbc.APIsDependenceJarTest;
 import com.efluid.tcbc.object.Classe;
 import com.efluid.tcbc.utils.ScanneClasspathUtils;
 import javassist.NotFoundException;
 
-public class AnalysisUseDependency extends ReadByteCodeClass<TestAPIsDependenceJar> {
+public class AnalysisUseDependency extends ReadByteCodeClass<APIsDependenceJarTest> {
 
-  public AnalysisUseDependency(TestAPIsDependenceJar control, Classe currentReadingClass) {
+  public AnalysisUseDependency(APIsDependenceJarTest control, Classe currentReadingClass) {
     super(control, currentReadingClass);
   }
 
